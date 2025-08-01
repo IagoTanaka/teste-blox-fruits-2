@@ -1,1 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
 
+.game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 20px auto;
+    background-color: #333;
+    border: 3px solid #444;
+    overflow: hidden;
+}
+
+.player {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background-color: #3498db;
+    border-radius: 10px;
+    bottom: 100px;
+    left: 100px;
+    transition: transform 0.1s;
+    z-index: 10;
+}
+
+.sword {
+    position: absolute;
+    width: 10px;
+    height: 50px;
+    background-color: #bdc3c7;
+    bottom: 130px;
+    left: 150px;
+    transform-origin: left center;
+    z-index: 5;
+    transition: all 0.3s;
+}
+
+.enemy {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background-color: #e74c3c;
+    border-radius: 5px;
+    bottom: 100px;
+    z-index: 8;
+}
+
+.stats {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Estilos de espada por nível */
+.sword-level-1 {
+    background: linear-gradient(to right, #bdc3c7, #95a5a6);
+    height: 50px;
+}
+
+.sword-level-2 {
+    background: linear-gradient(to right, #f1c40f, #f39c12);
+    height: 60px;
+    box-shadow: 0 0 10px #f1c40f;
+}
+
+.sword-level-3 {
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    height: 70px;
+    box-shadow: 0 0 15px #2ecc71;
+}
+
+.sword-level-4 {
+    background: linear-gradient(to right, #9b59b6, #8e44ad);
+    height: 80px;
+    box-shadow: 0 0 20px #9b59b6;
+}
+
+.sword-level-5 {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    height: 90px;
+    box-shadow: 0 0 25px #e74c3c;
+}
+
+.sword-level-6 {
+    background: linear-gradient(to right, #1abc9c, #16a085);
+    height: 100px;
+    box-shadow: 0 0 30px #1abc9c;
+}
+
+.sword-attacking {
+    transform: rotate(-60deg);
+}
