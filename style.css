@@ -3,8 +3,9 @@ body {
     padding: 0;
     background-color: #222;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
+    user-select: none;
 }
 
 .game-container {
@@ -12,28 +13,89 @@ body {
     width: 800px;
     height: 600px;
     margin: 20px auto;
-    background-color: #333;
+    background-color: #1a2f1a;
+    background-image: 
+        linear-gradient(to bottom, transparent 95%, rgba(0,50,0,0.3) 100%),
+        radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,30,0,0.5) 100%);
     border: 3px solid #444;
     overflow: hidden;
 }
 
+/* Personagem do jogador */
 .player {
     position: absolute;
-    width: 50px;
+    width: 40px;
     height: 80px;
-    background-color: #3498db;
-    border-radius: 10px;
     bottom: 100px;
     left: 100px;
     transition: transform 0.1s;
     z-index: 10;
+    transform-origin: center bottom;
 }
 
-.sword {
+.player-head {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ffdbac;
+    border-radius: 50%;
+    top: 0;
+    left: 5px;
+    border: 2px solid #d4a574;
+}
+
+.player-body {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background-color: #3a5fcd;
+    top: 30px;
+    left: 5px;
+    border-radius: 5px;
+    border: 2px solid #2a4fbd;
+}
+
+.player-arm {
     position: absolute;
     width: 10px;
-    height: 50px;
-    background-color: #bdc3c7;
+    height: 30px;
+    background-color: #ffdbac;
+    top: 35px;
+    border-radius: 5px;
+}
+
+.left-arm {
+    left: 0;
+    transform: rotate(20deg);
+}
+
+.right-arm {
+    right: 0;
+    transform: rotate(-20deg);
+}
+
+.player-leg {
+    position: absolute;
+    width: 12px;
+    height: 30px;
+    background-color: #2a4fbd;
+    bottom: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+.left-leg {
+    left: 5px;
+}
+
+.right-leg {
+    right: 5px;
+}
+
+/* Espada detalhada */
+.sword {
+    position: absolute;
+    width: 60px;
+    height: 10px;
     bottom: 130px;
     left: 150px;
     transform-origin: left center;
@@ -41,66 +103,173 @@ body {
     transition: all 0.3s;
 }
 
+.sword-blade {
+    position: absolute;
+    width: 50px;
+    height: 8px;
+    background: linear-gradient(to right, #e0e0e0, #c0c0c0);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 5px rgba(255,255,255,0.5);
+    left: 10px;
+}
+
+.sword-handle {
+    position: absolute;
+    width: 10px;
+    height: 8px;
+    background: linear-gradient(to right, #8b4513, #a0522d);
+    border-radius: 4px;
+}
+
+.sword-guard {
+    position: absolute;
+    width: 15px;
+    height: 3px;
+    background: #c0c0c0;
+    left: 5px;
+    top: 3px;
+    border-radius: 2px;
+}
+
+.sword-pommel {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d4af37;
+    border-radius: 50%;
+    left: 0;
+    top: 1px;
+}
+
+/* Estilos de espada por nível */
+.sword-level-1 .sword-blade {
+    width: 50px;
+    background: linear-gradient(to right, #e0e0e0, #c0c0c0);
+}
+
+.sword-level-2 .sword-blade {
+    width: 60px;
+    background: linear-gradient(to right, #f1c40f, #f39c12);
+    box-shadow: 0 0 10px #f1c40f;
+}
+
+.sword-level-3 .sword-blade {
+    width: 70px;
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    box-shadow: 0 0 15px #2ecc71;
+}
+
+.sword-level-4 .sword-blade {
+    width: 80px;
+    background: linear-gradient(to right, #9b59b6, #8e44ad);
+    box-shadow: 0 0 20px #9b59b6;
+}
+
+.sword-level-5 .sword-blade {
+    width: 90px;
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    box-shadow: 0 0 25px #e74c3c;
+}
+
+.sword-level-6 .sword-blade {
+    width: 100px;
+    background: linear-gradient(to right, #1abc9c, #16a085);
+    box-shadow: 0 0 30px #1abc9c;
+}
+
+.sword-attacking {
+    transform: rotate(-60deg);
+}
+
+/* Inimigos */
 .enemy {
     position: absolute;
     width: 40px;
-    height: 60px;
-    background-color: #e74c3c;
-    border-radius: 5px;
+    height: 80px;
     bottom: 100px;
     z-index: 8;
+}
+
+.enemy-head {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ff9999;
+    border-radius: 50%;
+    top: 0;
+    left: 5px;
+    border: 2px solid #cc7777;
+}
+
+.enemy-body {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background-color: #cd3a3a;
+    top: 30px;
+    left: 5px;
+    border-radius: 5px;
+    border: 2px solid #bd2a2a;
+}
+
+.enemy-arm {
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background-color: #ff9999;
+    top: 35px;
+    border-radius: 5px;
+}
+
+.enemy-leg {
+    position: absolute;
+    width: 12px;
+    height: 30px;
+    background-color: #bd2a2a;
+    bottom: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+.enemy-sword {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: #c0c0c0;
+    top: 40px;
+    right: -30px;
+    transform-origin: left center;
+    z-index: 7;
+}
+
+.enemy-attacking .enemy-sword {
+    transform: rotate(-45deg);
 }
 
 .stats {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .controls {
     text-align: center;
     margin-top: 10px;
+    color: #aaa;
 }
 
-/* Estilos de espada por nível */
-.sword-level-1 {
-    background: linear-gradient(to right, #bdc3c7, #95a5a6);
-    height: 50px;
+.health {
+    color: #ff4444;
 }
 
-.sword-level-2 {
-    background: linear-gradient(to right, #f1c40f, #f39c12);
-    height: 60px;
-    box-shadow: 0 0 10px #f1c40f;
+.damage-effect {
+    animation: damageFlash 0.3s;
 }
 
-.sword-level-3 {
-    background: linear-gradient(to right, #2ecc71, #27ae60);
-    height: 70px;
-    box-shadow: 0 0 15px #2ecc71;
-}
-
-.sword-level-4 {
-    background: linear-gradient(to right, #9b59b6, #8e44ad);
-    height: 80px;
-    box-shadow: 0 0 20px #9b59b6;
-}
-
-.sword-level-5 {
-    background: linear-gradient(to right, #e74c3c, #c0392b);
-    height: 90px;
-    box-shadow: 0 0 25px #e74c3c;
-}
-
-.sword-level-6 {
-    background: linear-gradient(to right, #1abc9c, #16a085);
-    height: 100px;
-    box-shadow: 0 0 30px #1abc9c;
-}
-
-.sword-attacking {
-    transform: rotate(-60deg);
+@keyframes damageFlash {
+    0% { background-color: rgba(255, 0, 0, 0.3); }
+    100% { background-color: transparent; }
 }
